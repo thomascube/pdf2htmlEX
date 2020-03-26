@@ -19,10 +19,10 @@ BUILD_DIR=${3:-"${CWD}/build"}
 set -ex
 
 ## install necessary tools and libs
-sudo yum -y install make cmake gcc gcc-c++ gnu-getopt java-1.8.0-openjdk \
+sudo yum -y install make cmake gcc gcc-c++ java-1.8.0-openjdk \
 	git wget zip unzip gettext patch libtool libtool-ltdl-devel \
-	pixman-devel python-devel glib2-devel pango-devel libxml2-devel libtiff-devel \
-	libpng-devel giflib-devel libspiro-devel freetype-devel libjpeg-turbo-devel openjpeg-devel
+	pixman-devel python2-devel glib2-devel pango-devel libxml2-devel libtiff-devel \
+	libpng-devel freetype-devel libjpeg-turbo-devel openjpeg2-devel
 
 # make temporary build directory
 mkdir -p $BUILD_DIR
@@ -69,6 +69,11 @@ cd fontforge
             --disable-python-extension
 make
 make install
+
+# Fix python shebang
+sed -i 's|/usr/bin/python|/usr/bin/python2|' $INSTALL_PREFIX/share/fontforge/python/webcollab.py
+sed -i 's|/usr/bin/python|/usr/bin/python2|' $INSTALL_PREFIX/share/fontforge/python/gdraw/gdraw.py
+sed -i 's|/usr/bin/python|/usr/bin/python2|' $INSTALL_PREFIX/share/fontforge/python/gdraw/__init__.py
 
 ## build pdf2htmlEX from .
 export LD_LIBRARY_PATH=$INSTALL_PREFIX/lib:$LD_LIBRARY_PATH

@@ -41,7 +41,7 @@ BuildRequires: libXext
 BuildRequires: libxml2
 BuildRequires: pcre
 BuildRequires: pixman
-BuildRequires: openjpeg
+BuildRequires: openjpeg2
 BuildRequires: xz
 
 # Add dependencies to build this package here:
@@ -99,7 +99,7 @@ BuildRequires: libspiro
 BuildRequires: libthai
 BuildRequires: libuuid
 BuildRequires: pango
-BuildRequires: python = 2.7.5
+BuildRequires: python2
 
 %description    fontforge
 fontforge-%{fontforge_version}
